@@ -1,8 +1,7 @@
 package backAgil.example.back.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+
 import java.util.Date;
 import java.util.List;
 
@@ -13,7 +12,9 @@ public class Livraison {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @ManyToOne
+    @JoinColumn(name = "camion_id") // Correspond au mappedBy de Camion
+    private Camion camion;
     @ManyToMany
     @JoinTable(
             name = "livraison_commandes",
